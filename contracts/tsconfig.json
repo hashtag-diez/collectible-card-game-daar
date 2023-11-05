@@ -19,10 +19,10 @@
     "jsx": "react-jsx",
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"],
-      "$/*": ["../typechain/src/*"]
+      "@/*": ["./src/*", "./deploy/*"],
+      "$/*": ["../typechain/src/*",  "./deploy/*"]
     }
   },
-  "include": ["./test", "./src", "./lib", "./hardhat.config.ts", "./deploy"],
-  "files": ["./hardhat.config.ts"]
+  "include": ["./test", "./src", "./lib", "hardhat.config.cjs", "./deploy", "./data"],
+  "files": ["hardhat.config.cjs"]
 }

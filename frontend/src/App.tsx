@@ -2,6 +2,10 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import styles from './styles.module.css'
 import * as ethereum from '@/lib/ethereum'
 import * as main from '@/lib/main'
+import Home from './Home'
+import NavBar from './NavBar'
+import Collection from './Collection'
+import Store from './Store'
 
 type Canceler = () => void
 const useAffect = (
@@ -38,12 +42,17 @@ const useWallet = () => {
     return { details, contract }
   }, [details, contract])
 }
-
-export const App = () => {
+const App = () => {
   const wallet = useWallet()
-  return (
-    <div className={styles.body}>
-      <h1>Welcome to Pokémon TCG</h1>
-    </div>
-  )
+  const [menu, setMenu] = useState('Home')
+  const menu_to_component = { Home: <Home wallet={wallet}/>, Collection: <Collection wallet={wallet}/>, Store: <Store wallet={wallet}/>}
+  if(wallet){
+    return (
+      <div className={styles.body}>
+        <NavBar setMenu={setMenu} />
+        {menu_to_component[menu]}
+      </div>
+    )
+  }
 }
+export {useWallet, App}
